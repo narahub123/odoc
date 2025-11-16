@@ -1,0 +1,1320 @@
+/* =======================
+   01. Base & Reset
+======================= */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* Pretendard를 최우선으로 하여 폰트 로딩 효율화 */
+  font-family:
+    Pretendard,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  color: #111;
+  /* 1920px 고정 폭 디자인을 중앙 정렬하고 스크롤 방지 */
+  min-width: 100%;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+}
+
+/* =======================
+   02. Layout (Page & Grid)
+======================= */
+:root {
+  --page-max-width: 1920px; /* 전체 페이지 최대 폭 */
+  --content-width: 1440px; /* 내부 콘텐츠 최대 폭 */
+  --side-padding: 40px; /* 내부 콘텐츠 좌우 패딩 */
+  --header-height: 85px; /* GNB 높이 */
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-max-width); /* 1920px 기준 디자인을 위해 최대 폭 설정 */
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* main 영역은 헤더만큼 아래에서 시작 */
+main {
+  padding-top: 0;
+}
+
+.eyebrow {
+  font-family: Pretendard, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  color: #e3181b;
+}
+
+/* =======================
+   03. GNB (Header) - 최종 GNB 코드
+======================= */
+.gnb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  height: var(--header-height);
+  z-index: 100;
+  background: rgba(0, 0, 0, 0);
+
+  backdrop-filter: blur(6px);
+
+  border-bottom: 1px solid #444444;
+  border-image: none;
+}
+
+.logo img {
+  height: 33.7125px;
+  width: 205px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.gnb-nav {
+  flex: 1;
+}
+.nav {
+  display: flex;
+  width: 1231px;
+  justify-content: space-around;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav li {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav a {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-family: Pretendard, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  padding-bottom: 8px;
+  display: block;
+  text-align: center;
+}
+
+.nav li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background: linear-gradient(to top, #eb141b80 0%, rgba(235, 20, 27, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -14px;
+  width: 8px;
+  height: 8px;
+  background: #eb141b;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.nav li:hover a::after {
+  opacity: 1;
+}
+.nav li:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.menu-icon {
+  opacity: 0;
+}
+/* =======================
+   04. Hero Section
+======================= */
+/* HERO – 풀블리드 + 1440 내부 레이아웃 */
+.hero {
+  position: relative;
+  width: 100%;
+  /* min-height: 930px; */
+  color: #fff;
+  overflow: hidden;
+  height: 750px;
+}
+
+/* 배경 이미지 (브라우저 폭 100% 채움) */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/hero/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.hero-left {
+  position: absolute;
+  z-index: 1;
+  top: 205px;
+  bottom: 140px;
+  padding-left: 160px;
+}
+
+.quote-icon {
+  width: 35px;
+  height: 28px;
+}
+
+.eyebrow {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0.9;
+  margin: 0 0 12px;
+}
+
+.hero-title {
+  margin: 0 0 24px;
+  font-size: 72px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sub {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* 오른쪽 리스트 패널 */
+.hero-links {
+  position: absolute;
+  list-style: none;
+  right: 240px;
+  bottom: 227px;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  width: 440px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.hero-links a {
+  display: block;
+  text-align: right;
+  font-weight: 500;
+  padding: 14px 0;
+  color: #cccccc;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1.4;
+  border-top: 1px solid #444444;
+}
+
+.arrow-down-icon {
+  position: absolute;
+  right: 24.5px;
+  bottom: 19.5px;
+  width: 31px;
+  height: 41px;
+  z-index: 1;
+}
+
+.contents-box {
+  width: var(--content-width);
+  margin: 0 auto;
+  border-left: 1px solid #ebebeb;
+  border-right: 1px solid #ebebeb;
+}
+/* =======================
+   05. Solutions Section
+======================= */
+.solutions {
+  background: #fff;
+}
+
+.card-section {
+  display: flex;
+}
+.card-section1 {
+  flex: 1;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+.card-section2 {
+  flex: 1;
+  margin-top: 60px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.eyebrow-red {
+  color: #e3181b;
+}
+.section-inner {
+  padding-top: 160px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.section-sub {
+  margin: 0 0 40px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 카드 2열 그리드 */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+
+/* 개별 카드 */
+.solution-card {
+  border: 1px solid #ebebeb;
+  border-top: 5px solid #e3181b;
+  gap: 24px;
+  background: #fff;
+  margin-bottom: 30px;
+}
+
+.solution-index {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  /* width: 105px;
+  height: 96px; */
+
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
+
+  font-family:
+    "DotGothic16",
+    Pretendard,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #111111;
+}
+
+.card-number {
+  position: relative;
+}
+.solution-body {
+  flex: 1;
+  padding: 30px;
+}
+
+.solution-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.solution-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #555;
+}
+/* =======================
+   06. experienceSection
+======================= */
+.experiences {
+  background: #fff;
+}
+
+.experience-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+
+.experience-content {
+  position: absolute;
+  top: 0;
+  right: -240px;
+  left: 0;
+
+  overflow-x: hidden;
+}
+
+.experience-grid {
+  position: absolute;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(720px, 1fr));
+  transition: 0.5s left ease-in-out;
+}
+
+.experience-card {
+  position: relative;
+  border: 1px solid #ebebeb;
+  background-color: #fff;
+  transition: 0.3s opacity ease-in-out;
+}
+
+.experience-card:hover .experience-card-image {
+  opacity: 1;
+  transition: 0.3s opacity ease-in-out;
+}
+
+.experience-card:hover .experience-card-content {
+  color: #fff;
+  transition: 0.3s color ease-in-out;
+}
+
+.experience-card-image {
+  width: 720px;
+  height: 350px;
+  /* 350px : figma 수치 */
+  filter: brightness(0.5);
+  opacity: 0;
+}
+
+.experience-card-content {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 40px 30px;
+  width: 100%;
+  height: 100%;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.3s color ease-in-out;
+}
+
+.experience-value-container {
+  display: flex;
+  align-items: center;
+}
+
+.experience-value {
+  margin: 0 0 8px;
+  font-size: 120px;
+  font-weight: 600;
+}
+
+.experience-value-icon {
+  margin: 0 0 8px;
+  font-size: 80px;
+  font-weight: 600;
+}
+
+.experience-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* 트리거 버튼  */
+
+.carousel-trigger-container {
+  position: absolute;
+  left: -164px;
+}
+
+.carousel-trigger-button {
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  border: 1px solid #ebebeb;
+  padding: 0;
+  cursor: pointer;
+}
+/* =======================
+   07. Clients Section
+======================= */
+
+.clients {
+  background: #fff;
+}
+
+.clients-inner {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.clients-title {
+  margin: 0 0 32px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.clients-carousel-wrapper {
+  position: relative;
+  height: 304px;
+}
+
+.clients-carousel {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -240px;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  overflow-x: hidden;
+  height: 100%;
+}
+/* 화살표 버튼 */
+.clients-arrow {
+  border: 1px solid #ebebeb;
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.clients-arrow:hover {
+  background: #f7f7f7;
+}
+
+/* 로고 리스트 */
+.clients-logos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, 1fr);
+
+  transition: 0.5s left ease-in-out;
+
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+/* .clients-logos > *:first-child {
+  border-bottom: 1px solid #ebebeb;
+  justify-self: stretch;
+  align-self: stretch;
+} */
+
+.clients-logos::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.clients-logos li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 150px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.clients-logos img {
+  width: 130px;
+  height: 20px;
+  object-fit: cover;
+}
+
+/* =======================
+   08. Insight Section
+======================= */
+.insight {
+  background: #fff;
+  border-top: 1px solid #ebebeb;
+}
+
+.insight-content {
+  display: flex;
+  width: 100%;
+}
+
+.insight-right {
+  flex: 1;
+}
+
+.insight-tabs {
+  width: 100%;
+}
+
+/* 왼쪽 텍스트 블록 */
+.insight-title {
+  margin: 0 0 16px;
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.insight-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #666;
+}
+
+/* 오른쪽 카드 리스트 */
+.insight-card {
+  position: relative;
+  border: 1px solid #ebebeb;
+  padding: 20px 24px 18px;
+  width: 720px;
+  height: 345px;
+  background-color: #fff;
+}
+
+.insight-card::before {
+  content: "";
+  position: absolute;
+  top: -1px; /* border 위에 정확히 얹히도록 */
+  left: 0;
+  width: 100%;
+  height: 0; /* default: 선 없음 */
+  background-color: transparent;
+  transition:
+    height 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.insight-card:hover {
+  background-color: #f9f9f9;
+}
+
+.insight-card:hover::before {
+  height: 5px; /* hover되면 선 두께 생성 */
+  background-color: #e3181b;
+}
+
+.insight-card:hover .insight-card-title {
+  color: #e3181b;
+}
+.insight-card:hover .polygon-icon {
+  display: none;
+}
+.insight-card:hover .polygon-icon-red {
+  display: inline;
+}
+
+.polygon-icon-red {
+  display: none;
+}
+.insight-feature-top {
+  margin: 0 0 4px;
+  font-size: 12px;
+  color: #e3181b;
+}
+
+.insight-card-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.insight-feature-meta {
+  margin: 0;
+  font-size: 11px;
+  color: #999;
+}
+
+.insight-card-desc {
+  margin: 0 0 4px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.insight-card-meta {
+  margin: 0;
+  font-size: 18px;
+  color: #999;
+}
+
+/* 탭 메뉴 */
+.insight-tabs {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: flex;
+  border-top: 1px solid #ebebeb;
+}
+
+.insight-tabs li {
+  position: relative;
+  flex: 1;
+  padding: 16px 10px 10px;
+  font-size: 20px;
+  color: #111111;
+  font-weight: 600;
+  cursor: default;
+  border: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 150px;
+}
+
+.insight-tabs li:hover {
+  color: #e3181b;
+}
+.insight-tabs li:hover:after {
+  opacity: 1;
+}
+
+.insight-tabs li::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 17px;
+  height: 17px;
+  background: url(./../assets/icons/point-red.svg) no-repeat;
+  background-size: cover;
+  opacity: 0;
+}
+/* ====================
+   09. CTA Section
+======================= */
+
+.cta {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 80px;
+  padding-bottom: 120px;
+  background: #ffffff;
+}
+
+.cta-inner {
+  position: relative;
+  width: 1360px;
+  height: 694px;
+  margin: 0 auto;
+  background-image: url("./../assets/icons/subtract.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.cta-copy {
+  position: absolute;
+  left: 112px;
+  top: 170px;
+}
+/* 1920px 이상에서 왼쪽 270px 여백 재현 */
+/* @media (min-width: 1920px) {
+  .cta-inner {
+    margin-left: 270px;
+    margin-right: auto;
+  }
+} */
+
+.cta-copy {
+  position: absolute;
+  top: 170px;
+  left: 112px;
+  max-width: 380px;
+  color: #ffffff;
+}
+
+.cta-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.cta-desc {
+  margin: 0 0 32px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #dcdcdc;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 999px;
+  background: #e3181b;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.cta-button:hover {
+  background: #c51418;
+}
+
+.cta-figure {
+  position: absolute;
+  bottom: 63px;
+  right: 372px;
+}
+
+.cta-figure img {
+  height: 444px;
+  width: auto;
+  display: block;
+}
+/* =======================
+   10. Footer
+======================= */
+.footer {
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #ebebeb;
+}
+
+.footer-inner {
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 60px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #111;
+}
+
+.footer-left {
+  max-width: 760px;
+}
+
+.footer-label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.footer-email {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.footer-phone {
+  margin: 4px 0 16px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.footer-address {
+  margin: 0;
+  font-size: 12px;
+  color: #777;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.footer-logo-wrap {
+  text-align: right;
+}
+
+.footer-logo {
+  height: 18px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-slogan {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 11px;
+  color: #999;
+}
+
+/* =======================
+   11. Responsive (Mobile - Max Width 375px)
+======================= */
+@media (max-width: 376px) {
+  :root {
+    --side-padding: 24px;
+    --header-height: 60px;
+    --page-max-width: 375px;
+  }
+
+  .page {
+    max-width: 100%;
+    max-width: var(--page-max-width);
+  }
+
+  /* ===== GNB ===== */
+  .gnb {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: unset;
+    height: var(--header-height);
+    padding: 0 20px;
+    background: rgba(0, 0, 0, 0.1);
+    border-bottom: none;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .logo img {
+    margin-left: 0;
+    margin-right: 0;
+    height: 26px;
+    width: auto;
+  }
+
+  .gnb-nav {
+    display: none;
+  }
+  .menu-icon {
+    opacity: 1;
+  }
+  /* ===== 공통 레이아웃 ===== */
+  .contents-box {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+  }
+
+  .section-inner {
+    padding: 56px 24px 56px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .section-sub {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .eyebrow,
+  .eyebrow-red {
+    font-size: 12px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    height: auto;
+    min-height: 540px;
+    position: relative;
+  }
+
+  .hero-bg {
+    background-position: center;
+  }
+
+  .hero-left {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    padding: 120px 24px 40px;
+  }
+
+  .quote-icon {
+    width: 24px;
+    height: 18px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.3;
+  }
+
+  .sub {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .hero-links {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: calc(100% - 48px);
+    margin: 0 auto 32px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-links a {
+    padding: 10px 16px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .arrow-down-icon {
+    display: none;
+  }
+
+  /* ===== SOLUTIONS ===== */
+  .card-section {
+    gap: 19px;
+  }
+
+  .card-section1,
+  .card-section2 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .solution-card {
+    margin-bottom: 16px;
+  }
+
+  .solution-body {
+    padding: 20px 20px 18px;
+  }
+
+  .solution-title {
+    font-size: 14px;
+  }
+
+  .solution-text {
+    font-size: 12px;
+  }
+
+  .solution-index {
+    top: 16px;
+    left: 30px;
+    font-size: 36px;
+  }
+
+  /* ===== EXPERIENCES ===== */
+  .experiences {
+    background: #fff;
+  }
+
+  .experience-content-wrapper {
+    position: relative;
+    width: 315px;
+    height: 200px;
+  }
+
+  .carousel-trigger-container {
+    position: absolute;
+    left: 0;
+    top: -40px;
+  }
+
+  .carousel-trigger-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .experience-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: unset;
+    width: 315px;
+    height: 200px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 200px;
+  }
+
+  .experience-card {
+    width: 315px;
+    height: 200px;
+  }
+
+  .experience-card-image {
+    width: 315px;
+    height: 200px;
+    opacity: 1;
+  }
+
+  .experience-card-content {
+    padding: 24px 20px;
+    color: white;
+    height: 200px;
+  }
+  .experience-value-container {
+    justify-content: center;
+  }
+  .experience-value {
+    font-size: 52px;
+  }
+
+  .experience-desc {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* ===== CLIENTS ===== */
+  .clients-inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .clients-carousel-wrapper {
+    height: 208px;
+  }
+
+  .clients-carousel {
+    right: 0;
+    position: relative;
+    height: 208px;
+  }
+
+  .clients-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .clients-logos {
+    position: absolute;
+    height: 204px;
+  }
+
+  .clients-logos li {
+    width: 150px;
+    height: 100px;
+    padding: 10px;
+  }
+
+  .clients-logos img {
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* ===== INSIGHT ===== */
+  .insight-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .insight-left {
+    margin-bottom: 0;
+  }
+
+  .insight-title {
+    font-size: 22px;
+  }
+
+  .insight-card {
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    padding: 18px 18px 16px;
+    background-color: #f9f9f9;
+  }
+
+  .insight-card::before {
+    content: "";
+    position: absolute;
+    top: -1px; /* border 위에 정확히 얹히도록 */
+    left: 0;
+    width: 100%;
+    height: 5px; /* default: 선 없음 */
+    background-color: #e3181b;
+  }
+
+  .polygon-icon {
+    display: none;
+  }
+  .polygon-icon-red {
+    display: inline;
+  }
+
+  .insight-card-title {
+    font-size: 18px;
+    color: #e3181b;
+  }
+
+  .insight-card-desc {
+    font-size: 12px;
+  }
+
+  .insight-card-meta,
+  .insight-feature-meta {
+    font-size: 11px;
+  }
+
+  .polygon-icon,
+  .polygon-icon-red {
+    width: 18px;
+    height: 18px;
+  }
+
+  .insight-tabs {
+    margin-top: 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-top: 1px solid #ebebeb;
+  }
+
+  .insight-tabs li {
+    min-width: 140px;
+    height: auto;
+    padding: 12px 8px;
+    font-size: 14px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .insight-tabs li::after {
+    right: 8px;
+    top: 8px;
+    width: 13px;
+    height: 13px;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+
+  /* .cta-inner {
+    width: calc(100% - 48px);
+    height: auto;
+    min-height: 360px;
+    margin: 0 auto;
+    background-size: cover;
+    background-position: center;
+  } */
+
+  .cta-inner {
+    position: relative;
+    width: 335px;
+    height: 376px;
+    background-image: url("./../assets/icons/substract-m.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .cta-copy {
+    position: absolute;
+    left: 30px;
+    top: 50px;
+  }
+
+  .cta-title {
+    font-size: 24px;
+  }
+
+  .cta-desc {
+    font-size: 13px;
+  }
+
+  .cta-figure {
+    position: absolute;
+    right: 35px;
+    bottom: 33px;
+    text-align: right;
+  }
+
+  .cta-figure img {
+    height: 220px;
+    width: auto;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 32px 24px 40px;
+  }
+
+  .footer-right {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-logo-wrap {
+    text-align: left;
+  }
+
+  .footer-email {
+    font-size: 18px;
+  }
+
+  .footer-phone {
+    font-size: 16px;
+  }
+}

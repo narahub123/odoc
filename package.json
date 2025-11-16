@@ -1,0 +1,27 @@
+{
+  "name": "artience-hp",
+  "version": "1.0.0",
+  "description": "Static marketing website for Artience",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx serve public",
+    "lint": "npx prettier --check .",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/odoc/artience-hp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/odoc/artience-hp/issues"
+  },
+  "homepage": "https://gitlab.com/odoc/artience-hp#readme",
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "serve": "^14.2.5"
+  }
+}
