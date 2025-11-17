@@ -380,7 +380,7 @@ main {
   top: 0;
   right: -240px;
   left: 0;
-
+  height: 352px;
   overflow-x: hidden;
 }
 
@@ -397,6 +397,7 @@ main {
   border: 1px solid #ebebeb;
   background-color: #fff;
   transition: 0.3s opacity ease-in-out;
+  height: 352px;
 }
 
 .experience-card:hover .experience-card-image {
@@ -1233,6 +1234,7 @@ main {
     border-right: none;
     border-top: none;
     border-bottom: 1px solid #ebebeb;
+    text-wrap: wrap;
   }
 
   .insight-tabs li::after {
